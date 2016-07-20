@@ -1,6 +1,6 @@
 /* @flow */
 import * as ActionTypes from './types';
-import type {ShowCompletionsAction, CompletionContextUpdatedAction} from "./types";
+import type {ShowCompletionsAction, CompletionContextUpdatedAction, ChangeSelectedIndexAction} from "./types";
 
 export const showCompletions = (doShow: boolean): ShowCompletionsAction => {
   return {
@@ -13,5 +13,12 @@ export const updateCompletionContext = (newContext: string): CompletionContextUp
   return {
     type: ActionTypes.completionContextUpdatedAction,
     completionContext: newContext
+  }
+};
+
+export const changeSelectedIndex = (selectedIndex: number): ChangeSelectedIndexAction => {
+  return {
+    type: ActionTypes.changeSelectedIndexAction,
+    selectedIndex
   }
 };

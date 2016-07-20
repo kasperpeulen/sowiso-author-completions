@@ -7,8 +7,9 @@ This chrome extension provides completions for authors working in sowiso.
    - pressed ctrl-space
    - the active element is a textarea with a vars-row class.
 - Completion popup positions itself right under the active caret.
-- Only relevant completions are shown
- 
+- Only relevant completions are shown.
+- Completions can be selected with arrows.
+
 ### To do
-- Completion can be selected with arrows, and insert completion with enter.
-- Completions can be discarded with escape
+- Completions can be inserted with enter.
+- Completions can be discarded with escape.
