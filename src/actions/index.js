@@ -4,14 +4,14 @@ import type {ShowCompletionsAction, CompletionContextUpdatedAction} from "./type
 
 export const showCompletions = (doShow: boolean): ShowCompletionsAction => {
   return {
-    type: ActionTypes.SHOW_COMPLETIONS,
+    type: ActionTypes.showCompletionsAction,
     doShow
   }
 };
 
 export const updateCompletionContext = (newContext: string): CompletionContextUpdatedAction => {
   return {
-    type: ActionTypes.COMPLETION_CONTEXT_UPDATED,
+    type: ActionTypes.completionContextUpdatedAction,
     completionContext: newContext
   }
 };

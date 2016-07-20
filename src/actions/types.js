@@ -1,17 +1,20 @@
 /* @flow */
 
-export const SHOW_COMPLETIONS = 'SHOW_COMPLETIONS';
-export const COMPLETION_CONTEXT_UPDATED = 'COMPLETION_CONTEXT_UPDATED';
+
+// use import * as ActionTypes from '../actions/types';
+// so you write ActionTypes.showCompletionsAction
+export const showCompletionsAction = 'ShowCompletionsAction';
+export const completionContextUpdatedAction = 'CompletionContextUpdatedAction';
 
 export type Action = ShowCompletionsAction
     | CompletionContextUpdatedAction;
 
 export type ShowCompletionsAction = {
-  type: 'SHOW_COMPLETIONS',
+  type: 'ShowCompletionsAction',
   doShow: boolean
 };
 
 export type CompletionContextUpdatedAction = {
-  type: 'COMPLETION_CONTEXT_UPDATED',
+  type: 'CompletionContextUpdatedAction',
   completionContext: string
 }

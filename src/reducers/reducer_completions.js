@@ -6,7 +6,7 @@ import type {Action} from '../actions/types';
 export default (state: Object, action: Action) => {
   const allCompletions = completionData.map((c) => new Completion(c.completion, c.description));
 
-  if (action.type === ActionTypes.COMPLETION_CONTEXT_UPDATED) {
+  if (action.type === ActionTypes.completionContextUpdatedAction) {
     const completionContext = action.completionContext;
     const relevant = allCompletions.filter(c => c.completion.startsWith(completionContext));
     return {
