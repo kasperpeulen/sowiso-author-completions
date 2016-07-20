@@ -4,7 +4,8 @@
   "description": "This chrome extension provides completions for authors working in sowiso.",
   "main": "dist/index.js",
   "scripts": {
-    "start": "node ./node_modules/webpack/bin/webpack.js -w"
+    "start": "node ./node_modules/webpack/bin/webpack.js -w",
+    "flow": "./node_modules/flow-bin/vendor/flow"
   },
   "author": "Kasper Peulen",
   "license": "MIT",
@@ -17,12 +18,13 @@
     "redux": "^3.0.4"
   },
   "devDependencies": {
-    "webpack": "^2.1.0-beta.19",
     "babel-core": "^6.10.4",
     "babel-loader": "^6.2.4",
     "babel-preset-es2016": "^6.11.3",
     "babel-preset-react": "^6.11.1",
-    "babel-preset-stage-0": "^6.5.0"
+    "babel-preset-stage-0": "^6.5.0",
+    "flow-bin": "^0.29.0",
+    "webpack": "^2.1.0-beta.19"
   },
   "babel": {
     "presets": [

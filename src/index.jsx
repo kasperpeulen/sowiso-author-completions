@@ -1,3 +1,5 @@
+/* @flow */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -10,7 +12,7 @@ const store = applyMiddleware()(createStore)(reducers);
 
 // The whole extension will live in a div appended to body
 // with an `extension-container` class.
-const createContainerAndAppendToDom = () => {
+const createContainerAndAppendToDom = (): HTMLDivElement => {
   const extensionContainer = document.createElement('div');
   extensionContainer.className = 'extension-container';
   document.body.appendChild(extensionContainer);
@@ -22,4 +24,3 @@ ReactDOM.render(
       <App />
     </Provider>
     , createContainerAndAppendToDom());
-
