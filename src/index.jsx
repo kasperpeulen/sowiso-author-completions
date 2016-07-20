@@ -3,12 +3,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
 
 import App from './components/app';
-import reducers from './reducers';
-
-const store = applyMiddleware()(createStore)(reducers);
+import initDomListener from './dom_listener';
+import store from './store';
 
 // The whole extension will live in a div appended to body
 // with an `extension-container` class.
@@ -24,3 +22,5 @@ ReactDOM.render(
       <App />
     </Provider>
     , createContainerAndAppendToDom());
+
+initDomListener();
