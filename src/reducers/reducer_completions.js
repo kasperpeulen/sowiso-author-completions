@@ -1,7 +1,20 @@
 /* @flow */
 import {Completion} from "../model/Completion";
-export default () => {
+import * as ActionTypes from '../actions/types';
+import type {Action} from '../actions/types';
+
+export default (state: Object, action: Action) => {
   const allCompletions = completionData.map((c) => new Completion(c.completion, c.description));
+
+  if (action.type === ActionTypes.COMPLETION_CONTEXT_UPDATED) {
+    const completionContext = action.completionContext;
+    const relevant = allCompletions.filter(c => c.completion.startsWith(completionContext));
+    return {
+      all: allCompletions,
+      relevant
+    }
+  }
+
   return {
     all: allCompletions,
     relevant: allCompletions

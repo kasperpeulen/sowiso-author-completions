@@ -1,10 +1,10 @@
 module.exports = {
   entry: [
-    './src/index.jsx'
+    './test/index.js'
   ],
   output: {
-    path: 'dist',
-    filename: 'index.js'
+    path: 'test',
+    filename: 'bundle.js'
   },
   module: {
     loaders: [{

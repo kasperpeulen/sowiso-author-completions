@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "node ./node_modules/webpack/bin/webpack.js -w",
-    "flow": "./node_modules/flow-bin/vendor/flow"
+    "flow": "./node_modules/flow-bin/vendor/flow",
+    "watch-test": "node ./node_modules/webpack/bin/webpack.js --config webpack_test.config.js -w"
   },
   "author": "Kasper Peulen",
   "license": "MIT",

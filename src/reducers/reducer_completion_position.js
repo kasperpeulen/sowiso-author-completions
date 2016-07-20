@@ -1,12 +1,12 @@
 /* @flow */
 import {Position} from '../model/Position';
-import {SHOW_COMPLETIONS} from "../actions/types";
 import {absolutePositionElement, caretPosition} from '../helper_functions';
 import {elementIsCompletionElement} from "../helper_functions";
 import type {Action} from '../actions/types';
+import * as ActionTypes from '../actions/types';
 
 export default (state: Position = new Position(100, 100), action: Action): Position => {
-  if (action.type == SHOW_COMPLETIONS && action.doShow) {
+  if (action.type === ActionTypes.SHOW_COMPLETIONS && action.doShow) {
     const activeElement = document.activeElement;
 
     // double check the type to make flow happy ...

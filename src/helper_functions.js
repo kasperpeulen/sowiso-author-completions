@@ -17,3 +17,29 @@ export const elementIsCompletionElement = (element: HTMLElement): boolean => {
   const className = 'vars_row';
   return element instanceof HTMLTextAreaElement && element.classList.contains(className);
 };
+
+// find the relevant context given some input text and a caret position
+//
+// "sw<caret>" should give "sw"
+// "blabla s<caret>" should give "s"
+// "blabla()" should give ""
+export const findCompletionContext = (text: string, caretPosition: number): string => {
+  text = text.substring(0, caretPosition);
+
+  var possibleBeginIndexes = [
+    text.lastIndexOf(' ') + 1,
+    text.lastIndexOf(')') + 1
+  ];
+
+  possibleBeginIndexes = possibleBeginIndexes.filter((i) => i !== -1);
+
+  const endIndex = function () {
+    if (possibleBeginIndexes.length === 0) {
+      return 0;
+    } else {
+      return Math.max(...possibleBeginIndexes);
+    }
+  }();
+
+  return text.substring(endIndex);
+};

@@ -4,3 +4,5 @@
 
 /.idea/
 /dist/index.js.map
+/test/bundle.js
+/test/bundle.js.map
