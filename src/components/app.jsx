@@ -1,15 +1,21 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Position} from '../model/Position';
+import {Completion} from '../model/Completion';
 
 export default class App extends Component {
   props: {
     showCompletions: Boolean,
-    completionPosition: Position
+    completionPosition: Position,
+    allCompletions: [Completion]
   };
 
   render() {
-    const {showCompletions, completionPosition} = this.props;
+    const {showCompletions, completionPosition, allCompletions} = this.props;
+
+    if (!allCompletions) {
+      return <div>Loading ...</div>
+    }
     return (
         <div style={{
         display: showCompletions ? 'block' : 'none',
@@ -20,17 +26,22 @@ export default class App extends Component {
         border: '1px solid black',
         backgroundColor: 'white',
       }}>
-          Here will be completions. At some point...
+          {allCompletions.map((c) => {
+            const completionText = c.completion;
+            return <div key={completionText}>{completionText}</div>;
+          })
+          }
         </div>
     );
   }
 }
 
 export default connect(
-    ({showCompletions, completionPosition}) => {
+    ({showCompletions, completionPosition, allCompletions}) => {
       return {
         showCompletions,
-        completionPosition
+        completionPosition,
+        allCompletions
       }
     }
 )(App);
