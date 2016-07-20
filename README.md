@@ -9,5 +9,6 @@ This chrome extension provides completions for authors working in sowiso.
 - Completion popup positions itself right under the active caret.
  
 ### To do
+- Only relevant completions are shown
 - Completion can be selected with arrows, and insert completion with enter.
 - Completions can be discarded with escape

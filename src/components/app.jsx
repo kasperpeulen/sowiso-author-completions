@@ -7,14 +7,14 @@ export default class App extends Component {
   props: {
     showCompletions: Boolean,
     completionPosition: Position,
-    allCompletions: [Completion]
+    completions: [Completion]
   };
 
   render() {
-    const {showCompletions, completionPosition, allCompletions} = this.props;
+    const {showCompletions, completionPosition, completions} = this.props;
 
-    if (!allCompletions) {
-      return <div>Loading ...</div>
+    if (!completions) {
+      return <div>No completions... </div>
     }
     return (
         <div style={{
@@ -26,22 +26,21 @@ export default class App extends Component {
         border: '1px solid black',
         backgroundColor: 'white',
       }}>
-          {allCompletions.map((c) => {
+          {completions.map((c) => {
             const completionText = c.completion;
             return <div key={completionText}>{completionText}</div>;
-          })
-          }
+          })}
         </div>
     );
   }
 }
 
 export default connect(
-    ({showCompletions, completionPosition, allCompletions}) => {
+    ({showCompletions, completionPosition, completions}) => {
       return {
         showCompletions,
         completionPosition,
-        allCompletions
+        completions: completions.relevant
       }
     }
 )(App);

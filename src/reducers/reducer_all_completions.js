@@ -1,6 +1,10 @@
 import {Completion} from "../model/Completion";
 export default () => {
-  return completionData.map((c) => new Completion(c.completion, c.description));
+  const allCompletions = completionData.map((c) => new Completion(c.completion, c.description));
+  return {
+    all: allCompletions,
+    relevant: allCompletions
+  }
 }
 
 const completionData = [
