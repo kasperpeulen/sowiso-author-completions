@@ -1,0 +1,17 @@
+{
+  "name": "sowiso-author-completions",
+  "version": "0.0.0",
+  "description": "Provides completions for authors working in sowiso.",
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.sowiso.nl/*"
+      ],
+      "js": [
+        "index.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "manifest_version": 2
+}
