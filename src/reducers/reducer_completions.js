@@ -3,24 +3,6 @@ import {Completion} from "../model/Completion";
 import * as ActionTypes from '../actions/types';
 import type {Action} from '../actions/types';
 
-export default (state: Object, action: Action) => {
-  const allCompletions = completionData.map((c) => new Completion(c.completion, c.description));
-
-  if (action.type === ActionTypes.completionContextUpdatedAction) {
-    const completionContext = action.completionContext;
-    const relevant = allCompletions.filter(c => c.completion.startsWith(completionContext));
-    return {
-      all: allCompletions,
-      relevant
-    }
-  }
-
-  return {
-    all: allCompletions,
-    relevant: allCompletions
-  }
-}
-
 const completionData = [
   {
     completion: "sw_answer(a)",
@@ -39,3 +21,30 @@ const completionData = [
     'e.g. `sw_concat(["a","b","c"])` returns `abc`'
   }
 ];
+
+const allCompletions = completionData.map((c) => new Completion(c.completion, c.description));
+
+const initial = {
+  all: allCompletions,
+  relevant: allCompletions
+};
+
+
+type Completions = {
+  all: [Completion],
+  relevant: [Completion]
+}
+
+
+export default (state: Completions = initial, action: Action): Completions => {
+  if (action.type === ActionTypes.completionContextUpdatedAction) {
+    const completionContext = action.completionContext;
+    const relevant = allCompletions.filter(c => c.completion.startsWith(completionContext));
+    return {
+      all: allCompletions,
+      relevant
+    }
+  }
+
+  return state
+}

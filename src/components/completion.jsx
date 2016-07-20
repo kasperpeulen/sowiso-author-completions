@@ -1,8 +1,11 @@
 import React from 'react';
 
-export default({completion}) => {
+export default({completion, selected}) => {
   return (
-      <div>
+      <div style={{
+        // TODO: improve style
+        backgroundColor: selected ? 'lightblue' : 'white'
+      }}>
         {completion}
       </div>
   );

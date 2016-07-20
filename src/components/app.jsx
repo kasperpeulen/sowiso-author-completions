@@ -9,11 +9,12 @@ class App extends Component {
   props: {
     showCompletions: Boolean,
     completionPosition: Position,
-    completions: [Completion]
+    completions: [Completion],
+    selectedCompletionIndex: number
   };
 
   render() {
-    const {showCompletions, completionPosition, completions} = this.props;
+    const {showCompletions, completionPosition, completions, selectedCompletionIndex} = this.props;
 
     if (!completions) {
       return <div>No completions... </div>
@@ -30,9 +31,13 @@ class App extends Component {
       }}>
           {completions.map((c) => {
             const completionText = c.completion;
+            const index = completions.lastIndexOf(c);
+            const selected = selectedCompletionIndex == index;
             return <CompletionComponent
                 key={completionText}
-                completion={completionText}/>
+                selected={selected}
+                completion={completionText}
+            />
           })}
         </div>
     );
@@ -40,11 +45,17 @@ class App extends Component {
 }
 
 export default connect(
-    ({showCompletions, completionPosition, completions}) => {
+    ({
+        showCompletions,
+        completionPosition,
+        completions,
+        selectedCompletionIndex
+    }) => {
       return {
         showCompletions,
         completionPosition,
-        completions: completions.relevant
+        completions: completions.relevant,
+        selectedCompletionIndex
       }
     }
 )(App);
