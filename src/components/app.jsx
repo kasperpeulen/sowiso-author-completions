@@ -1,9 +1,10 @@
+/* @flow */
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Position} from '../model/Position';
 import {Completion} from '../model/Completion';
 
-export default class App extends Component {
+class App extends Component {
   props: {
     showCompletions: Boolean,
     completionPosition: Position,

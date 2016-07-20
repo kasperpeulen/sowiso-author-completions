@@ -1,3 +1,4 @@
+/* @flow */
 export class Position {
   top: number;
   left: number;
@@ -15,7 +16,7 @@ export class Position {
     return `${this.left}px`;
   }
 
-  get px() {
+  get px():{top: string, left: string} {
     return {top: this.topPx, left: this.leftPx};
   }
 

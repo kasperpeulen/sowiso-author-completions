@@ -1,3 +1,4 @@
+/* @flow */
 export class Completion {
   completion: string;
   description: string;

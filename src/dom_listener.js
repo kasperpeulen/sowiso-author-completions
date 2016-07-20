@@ -1,6 +1,8 @@
+/* @flow */
 import KeyCode from 'keycode.js/index';
 import store from './store';
 import {showCompletions} from './actions';
+import {elementIsCompletionElement} from "./helper_functions";
 
 export default () => {
   window.addEventListener('keyup', (e) => {
@@ -11,13 +13,5 @@ export default () => {
   });
 }
 
-const ctrlSpacePressed = (e: KeyboardEvent): Boolean
-    => e.which == KeyCode.SPACE && e.ctrlKey;
+const ctrlSpacePressed = (e: KeyboardEvent): boolean => e.which == KeyCode.SPACE && e.ctrlKey;
 
-// checks if the element is an element we can peform code completion on
-const elementIsCompletionElement = (element: HTMLElement): Boolean => {
-  const className = 'vars_row';
-
-  return element.classList.contains(className)
-      && element instanceof HTMLTextAreaElement;
-};

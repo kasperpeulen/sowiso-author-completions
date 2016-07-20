@@ -1,3 +1,4 @@
+/* @flow */
 import {Completion} from "../model/Completion";
 export default () => {
   const allCompletions = completionData.map((c) => new Completion(c.completion, c.description));
