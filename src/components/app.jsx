@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Position} from '../model/Position';
 import {Completion} from '../model/Completion';
+import CompletionComponent from './completion';
 
 class App extends Component {
   props: {
@@ -29,7 +30,9 @@ class App extends Component {
       }}>
           {completions.map((c) => {
             const completionText = c.completion;
-            return <div key={completionText}>{completionText}</div>;
+            return <CompletionComponent
+                key={completionText}
+                completion={completionText}/>
           })}
         </div>
     );
