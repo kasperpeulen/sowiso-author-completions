@@ -23,5 +23,5 @@ This chrome extension provides completions for authors working in sowiso.
 - Give the UI some love
 
 ### Bugs
+- Too much completions are shown, make it scrollable or limit the completions FIXED
 - Completion context is not updating if the completions are not visible.
-- Too much completions are shown, make it scrollable or limit the completions

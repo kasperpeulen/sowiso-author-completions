@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Position} from '../model/Position';
 import {Completion} from '../model/Completion';
-import CompletionComponent from './completion';
+import {CompletionComponent} from './completion';
 
 class App extends Component {
   props: {
@@ -22,12 +22,15 @@ class App extends Component {
     return (
         <div style={{
         display: showCompletions ? 'block' : 'none',
+        maxHeight: '131px',
+        minWidth: '131px',
+        borderRadius: '3px',
+        boxShadow: 'rgba(0, 0, 0, 0.0980392) 0px 2px 12px',
+        padding: '2px 0px',
         position: 'absolute',
-        ...completionPosition.px,
-
-        // TODO: remove, this is for debugging
-        border: '1px solid black',
-        backgroundColor: 'white',
+        overflow: 'auto',
+        background: 'rgba(255, 255, 255, 0.901961)',
+        ...completionPosition.px
       }}>
           {completions.map((c) => {
             const completionText = c.completion;

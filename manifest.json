@@ -15,6 +15,7 @@
     }
   ],
   "web_accessible_resources": [
-    "sowiso_php_functions.json"
+    "sowiso_php_functions.json",
+    "standard_php_functions.json"
   ]
 }
