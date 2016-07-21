@@ -1,10 +1,11 @@
 /* @flow */
 import KeyCode from 'keycode.js/index';
-import store from './store';
+import {store} from './store';
 import {showCompletions} from './actions';
 import {elementIsCompletionElement} from "./helper_functions";
 import {findCompletionContext} from "./helper_functions";
 import {updateCompletionContext, changeSelectedIndex} from "./actions/index";
+import type {State} from './reducers';
 
 export default () => {
   window.addEventListener('keyup', (e) => {

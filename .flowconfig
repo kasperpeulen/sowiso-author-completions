@@ -1,8 +1,12 @@
+[libs]
+flow-typed
+
 [version]
 0.29.0
 
 [ignore]
 .*/node_modules/fbjs/.*
+.*/node_modules/flow-typed/.*
 
 [options]
 unsafe.enable_getters_and_setters=true

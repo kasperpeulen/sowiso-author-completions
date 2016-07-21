@@ -30,7 +30,7 @@ const initial = {
 };
 
 
-type Completions = {
+export type Completions = {
   all: [Completion],
   relevant: [Completion]
 }
