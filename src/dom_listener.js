@@ -13,12 +13,10 @@ export default () => {
 
     // casting element for flow
     if (activeElement instanceof HTMLTextAreaElement && elementIsCompletionElement(activeElement)) {
-      if (state.showCompletions) {
-        // update the completion context
-        const caretPosition = activeElement.selectionEnd;
-        const completionContext = findCompletionContext(activeElement.value, caretPosition);
-        store.dispatch(updateCompletionContext(completionContext));
-      }
+      // update the completion context
+      const caretPosition = activeElement.selectionEnd;
+      const completionContext = findCompletionContext(activeElement.value, caretPosition);
+      store.dispatch(updateCompletionContext(completionContext));
     }
   });
 
