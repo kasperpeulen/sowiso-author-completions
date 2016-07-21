@@ -2,7 +2,7 @@
 import {Completion} from "./model/Completion";
 import {initialCompletionsFetched} from "./actions/index";
 import {store} from './store';
-
+import chrome from './chrome';
 
 const devMode = window.location.host.includes('localhost');
 
@@ -12,8 +12,6 @@ export async function fetchInitialState() {
 
   let url2 = 'standard_php_functions.json';
   url2 = devMode ? `dist/${url2}` : chrome.extension.getURL(url2);
-
-  console.log(url1, url2);
 
   const jsons = await Promise.all([
     getJsonFromUrl(url1),
