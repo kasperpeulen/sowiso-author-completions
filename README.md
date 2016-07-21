@@ -10,6 +10,9 @@ This chrome extension provides completions for authors working in sowiso.
 - Only relevant completions are shown.
 - Completions can be selected with arrows.
 - Completions can be discarded with escape.
+- Completions can be inserted with enter.
 
 ### To do
-- Completions can be inserted with enter.
+- Completion suggestions include:
+    - [SOWISO PHP FUNCTIONS](https://cloud.sowiso.nl/docs/exercise_manual#SOWISO_PHP_functions)
+    - [PHP FUNCTIONS](https://cloud.sowiso.nl/docs/exercise_manual#PHP_functions)
