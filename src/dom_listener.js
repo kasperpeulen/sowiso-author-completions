@@ -6,17 +6,30 @@ import {elementIsCompletionElement} from "./helper_functions";
 import {findCompletionContext, mod} from "./helper_functions";
 import {updateCompletionContext, changeSelectedIndex} from "./actions/index";
 
+
 export default () => {
-  window.addEventListener('keydown', (e) => {
+
+  document.addEventListener('input', () => {
+    const state = store.getState();
     const activeElement = document.activeElement;
 
     // casting element for flow
     if (activeElement instanceof HTMLTextAreaElement && elementIsCompletionElement(activeElement)) {
+      if (state.showCompletions) {
+        // update the completion context
+        const caretPosition = activeElement.selectionEnd;
+        const completionContext = findCompletionContext(activeElement.value, caretPosition);
+        store.dispatch(updateCompletionContext(completionContext));
+      }
+    }
+  });
 
-      // update the completion context
-      const caretPosition = activeElement.selectionEnd;
-      const completionContext = findCompletionContext(activeElement.value, caretPosition);
-      store.dispatch(updateCompletionContext(completionContext));
+  window.addEventListener('keydown', (e) => {
+    const state = store.getState();
+    const activeElement = document.activeElement;
+
+    // casting element for flow
+    if (activeElement instanceof HTMLTextAreaElement && elementIsCompletionElement(activeElement)) {
 
       // show the completions on ctrl-space in the right textarea
       if (ctrlSpacePressed(e)) {
@@ -24,25 +37,30 @@ export default () => {
         store.dispatch(showCompletions(true));
       }
 
-      const state = store.getState();
+
       const relevantCompletions = state.completions.relevant;
       const completionsLength = relevantCompletions.length;
 
-      if (e.which === KeyCode.DOWN) {
-        e.preventDefault();
-        const index = mod(state.selectedCompletionIndex + 1, completionsLength);
-        store.dispatch(changeSelectedIndex(index));
-      } else if (e.which === KeyCode.UP) {
-        e.preventDefault();
-        const index = mod(state.selectedCompletionIndex - 1, completionsLength);
-        store.dispatch(changeSelectedIndex(index));
-      } else if (e.which === KeyCode.ESCAPE) {
-        store.dispatch(showCompletions(false));
-      } else if (e.which === KeyCode.ENTER) {
-        e.preventDefault();
-        const activeCompletionText = relevantCompletions[state.selectedCompletionIndex].completion;
-        insertTextInTextarea(activeCompletionText, activeElement);
-        store.dispatch(showCompletions(false));
+      switch (e.which) {
+        case KeyCode.DOWN:
+          e.preventDefault();
+          let index = mod(state.selectedCompletionIndex + 1, completionsLength);
+          store.dispatch(changeSelectedIndex(index));
+          break;
+        case KeyCode.UP:
+          e.preventDefault();
+          let index2 = mod(state.selectedCompletionIndex - 1, completionsLength);
+          store.dispatch(changeSelectedIndex(index2));
+          break;
+        case KeyCode.ESCAPE:
+          store.dispatch(showCompletions(false));
+          break;
+        case KeyCode.ENTER:
+          e.preventDefault();
+          const activeCompletionText = relevantCompletions[state.selectedCompletionIndex].completion;
+          insertTextInTextarea(activeCompletionText, activeElement);
+          store.dispatch(showCompletions(false));
+          break;
       }
     }
   });
