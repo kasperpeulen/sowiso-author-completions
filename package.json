@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "node ./node_modules/webpack/bin/webpack.js -w",
+    "watch-dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "flow": "./node_modules/flow-bin/vendor/flow",
     "watch-test": "node ./node_modules/webpack/bin/webpack.js --config webpack_test.config.js -w",
     "watch-bin": "babel bin/scrape_functions.js -o bin/scrape_function.babel.js -w --source-maps=true"
@@ -33,7 +34,8 @@
     "flow-bin": "^0.29.0",
     "fs-promise": "^0.5.0",
     "jsdom": "^9.4.1",
-    "webpack": "^2.1.0-beta.19"
+    "webpack": "^2.1.0-beta.19",
+    "webpack-dev-server": "^2.1.0-beta.0"
   },
   "babel": {
     "presets": [
