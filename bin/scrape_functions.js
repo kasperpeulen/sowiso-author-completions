@@ -9,6 +9,7 @@ import fsp from 'fs-promise';
 const inputFile = 'bin/exercise_manual.html';
 const outputDir = 'dist';
 const outputFile = 'sowiso_php_functions.json';
+const outputFile2 = 'standard_php_functions.json';
 
 (async() => {
   if (!await workingDirectoryIsRootOfPackage(process.cwd())) {
@@ -24,25 +25,21 @@ const outputFile = 'sowiso_php_functions.json';
     return;
   }
 
-  const json = turnRawHtmlIntoJson(html);
+  // window on nodejs, coool
+  const window = jsdom(html).defaultView;
 
-  if (!await fsp.exists(outputDir)) {
-    await fsp.mkdir(outputDir);
-  }
+  const jsonSowiso = extractSowisoFunctions(window);
+  const jsonPhp = extractPhpFunctions(window);
 
-  try {
-    const outputPath = path.join(outputDir, outputFile);
-    await fsp.writeFile(outputPath, JSON.stringify(json));
-    console.log(`Created ${outputPath}`);
-  } catch (e) {
-    console.log(e);
-  }
+  // concurrency!
+  await Promise.all([
+      writeJsonToFile(JSON.stringify(jsonSowiso), outputFile),
+      writeJsonToFile(JSON.stringify(jsonPhp), outputFile2)
+  ]);
 })();
 
 // pure function
-function turnRawHtmlIntoJson(html: String): [{completion: string, description: string}] {
-  const window = jsdom(html).defaultView;
-
+function extractSowisoFunctions(window: Object): [{completion: string, description: string}] {
   const headings = window.document.querySelectorAll('h3');
   const heading = [].filter.call(headings, h => {
     return (h.textContent === 'SOWISO PHP functions');
@@ -62,7 +59,43 @@ function turnRawHtmlIntoJson(html: String): [{completion: string, description: s
   });
 }
 
-async function workingDirectoryIsRootOfPackage(workingDirectory: string): Promise<boolean> {
+// pure function
+function extractPhpFunctions(window: Object): [{completion: string, description: string}] {
+  const headings = window.document.querySelectorAll('h3');
+  const heading = [].filter.call(headings, h => {
+    return (h.textContent === 'PHP functions');
+  })[0];
+
+  const theTextIWant = heading.nextElementSibling.nextElementSibling.textContent;
+
+  return theTextIWant
+      .split(",")
+      .map((f) => f.trim() + "()")
+      .map((f) => {
+        return {
+          completion: f,
+          // TODO find some description
+          description: ""
+        };
+      });
+}
+
+async function writeJsonToFile(json: string, outputFile: string): Promise<*> {
+  if (!await fsp.exists(outputDir)) {
+    await fsp.mkdir(outputDir);
+  }
+
+  try {
+    const outputPath = path.join(outputDir, outputFile);
+    await fsp.writeFile(outputPath, json);
+    console.log(`Created ${outputPath}`);
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+
+async function workingDirectoryIsRootOfPackage(workingDirectory: string): Promise<*> {
   try {
     const packagePath = path.join(workingDirectory, 'package.json');
     await fsp.access(packagePath, fs.F_OK);

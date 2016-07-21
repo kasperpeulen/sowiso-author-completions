@@ -10,3 +10,5 @@
 /bin/scrape_function.babel.js
 /bin/scrape_function.babel.js.map
 /dist/sowiso_php_functions.json
+/dist/standard_php_functions.json
+/.vscode/settings.json

@@ -13,7 +13,15 @@ This chrome extension provides completions for authors working in sowiso.
 - Completions can be inserted with enter.
 - Completion suggestions include:
     - [SOWISO PHP FUNCTIONS](https://cloud.sowiso.nl/docs/exercise_manual#SOWISO_PHP_functions)
-
-### To do
 - Completion suggestions include:
     - [PHP FUNCTIONS](https://cloud.sowiso.nl/docs/exercise_manual#PHP_functions)
+
+### To do
+- Expose the description in the UI
+- Make sure to strip the parameters when inserted in the dom
+- Put the caret position between the parenthesis (<caret>) after inserting completion
+- Give the UI some love
+
+### Bugs
+- Completion context is not updating if the completions are not visible.
+- Too much completions are shown, make it scrollable or limit the completions
