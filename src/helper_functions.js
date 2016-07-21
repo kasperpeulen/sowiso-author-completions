@@ -43,3 +43,8 @@ export const findCompletionContext = (text: string, caretPosition: number): stri
 
   return text.substring(endIndex);
 };
+
+export const mod = (value, divisor) => {
+  var n = value % divisor;
+  return n < 0 ? (divisor + n) : n
+};

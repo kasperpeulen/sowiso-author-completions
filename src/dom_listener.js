@@ -3,7 +3,7 @@ import KeyCode from 'keycode.js/index';
 import {store} from './store';
 import {showCompletions} from './actions';
 import {elementIsCompletionElement} from "./helper_functions";
-import {findCompletionContext} from "./helper_functions";
+import {findCompletionContext, mod} from "./helper_functions";
 import {updateCompletionContext, changeSelectedIndex} from "./actions/index";
 
 
@@ -32,11 +32,11 @@ export default () => {
 
       if (e.which === KeyCode.DOWN) {
         e.preventDefault();
-        const index = (state.selectedCompletionIndex + 1) % completionsLength;
+        const index = mod(state.selectedCompletionIndex + 1, completionsLength);
         store.dispatch(changeSelectedIndex(index));
       } else if (e.which === KeyCode.UP) {
         e.preventDefault();
-        const index = (state.selectedCompletionIndex - 1) % completionsLength;
+        const index = mod(state.selectedCompletionIndex - 1, completionsLength);
         store.dispatch(changeSelectedIndex(index));
       } else if (e.which === KeyCode.ESCAPE) {
         store.dispatch(showCompletions(false));
