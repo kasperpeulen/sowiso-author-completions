@@ -33,6 +33,8 @@ export default () => {
       } else if (e.which === KeyCode.UP) {
         const index = (state.selectedCompletionIndex - 1) % completionsLength;
         store.dispatch(changeSelectedIndex(index));
+      } else if (e.which === KeyCode.ESCAPE) {
+        store.dispatch(showCompletions(false));
       }
     }
   });
