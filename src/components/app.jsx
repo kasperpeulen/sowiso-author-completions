@@ -20,30 +20,40 @@ class App extends Component {
       return null;
     }
     return (
-        <div style={{
-        display: showCompletions ? 'block' : 'none',
-        maxHeight: '131px',
-        minWidth: '131px',
+        <div ref="root" style={{
+        display: showCompletions ? 'flex' : 'none',
+        flexDirection: 'row',
+         maxHeight: '131px',
         borderRadius: '3px',
         boxShadow: 'rgba(0, 0, 0, 0.0980392) 0px 2px 12px',
         padding: '2px 0px',
         position: 'absolute',
-        overflow: 'auto',
         background: 'rgba(255, 255, 255, 0.901961)',
         ...completionPosition.px
       }}>
-          {completions.map((c) => {
-            const completionText = c.completion;
-            const index = completions.lastIndexOf(c);
-            const selected = selectedCompletionIndex == index;
-            return <CompletionComponent
-                key={completionText}
-                selected={selected}
-                completion={completionText}
-            />
-          })}
+            <div style={{
+              overflow: 'auto',
+              minWidth: '131px'
+            }}>
+              {completions.map((c) => {
+                const index = completions.lastIndexOf(c);
+                const selected = selectedCompletionIndex == index;
+                return <CompletionComponent
+                    key={c.completion}
+                    selected={selected}
+                    completion={c.completion}
+                />
+              })}
+            </div>
+          <div style={{overflow: 'auto', width: '400px'}}>
+            {this.selectedCompletionDescription()}
+            </div>
         </div>
     );
+  }
+
+  selectedCompletionDescription(): string {
+    return this.props.completions[this.props.selectedCompletionIndex].description;
   }
 }
 

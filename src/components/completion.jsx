@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import {mod} from "../helper_functions";
 
 export class CompletionComponent extends Component {
+  props: {
+    completion: string,
+    selected: boolean
+  };
+
   constructor(props) {
     super(props);
   }
