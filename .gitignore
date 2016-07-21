@@ -6,6 +6,6 @@
 /dist/index.js.map
 /test/bundle.js
 /test/bundle.js.map
-/bin/scrape_functions.bundle.js
-/bin/scrape_functions.bundle.js.map
 /bin/exercise_manual.html
+/bin/scrape_function.babel.js
+/bin/scrape_function.babel.js.map
