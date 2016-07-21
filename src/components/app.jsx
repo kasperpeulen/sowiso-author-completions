@@ -16,8 +16,8 @@ class App extends Component {
   render() {
     const {showCompletions, completionPosition, completions, selectedCompletionIndex} = this.props;
 
-    if (!completions) {
-      return <div>No completions... </div>
+    if (completions.length == 0) {
+      return null;
     }
     return (
         <div style={{

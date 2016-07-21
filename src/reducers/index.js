@@ -6,8 +6,8 @@ import completions from './reducer_completions';
 import selectedCompletionIndex from './reducer_selected_completion_index';
 import type {Action} from '../actions/types';
 import {Position} from '../model/Position';
-import type {Completions} from './reducer_completions';
 import type {Reducer} from 'redux';
+import {Completions} from "../flowtypes";
 
 export type State = {
   showCompletions: boolean,

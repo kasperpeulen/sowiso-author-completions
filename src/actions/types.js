@@ -1,11 +1,12 @@
 /* @flow */
-
+import {Completions} from "../flowtypes";
 
 // use import * as ActionTypes from '../actions/types';
-// so you write ActionTypes.showCompletionsAction
-export const showCompletionsAction = 'ShowCompletionsAction';
-export const completionContextUpdatedAction = 'CompletionContextUpdatedAction';
-export const changeSelectedIndexAction = 'ChangeSelectedIndexAction';
+// so you write ActionTypes.showCompletions
+export const showCompletions = 'ShowCompletionsAction';
+export const completionContextUpdated = 'CompletionContextUpdatedAction';
+export const changeSelectedIndex = 'ChangeSelectedIndexAction';
+export const initialCompletionsFetched = 'InitialCompletionsFetchedAction';
 
 export type Action = ShowCompletionsAction
     | CompletionContextUpdatedAction
@@ -24,4 +25,9 @@ export type CompletionContextUpdatedAction = {
 export type ChangeSelectedIndexAction = {
   type: 'ChangeSelectedIndexAction',
   selectedIndex: number
+}
+
+export type InitialCompletionsFetchedAction = {
+  type: 'InitialCompletionsFetchedAction',
+  completions: Completions
 }

@@ -6,6 +6,10 @@ import {Provider} from 'react-redux';
 import App from './components/app';
 import initDomListener from './dom_listener';
 import {store} from './store';
+import {fetchInitialState} from "./fetch_initial_state";
+
+// fetch the completions data from json
+fetchInitialState();
 
 // The whole extension will live in a div appended to body
 // with an `extension-container` class.
@@ -18,7 +22,7 @@ const createContainerAndAppendToDom = (): HTMLDivElement => {
 
 ReactDOM.render(
     <Provider store={store}>
-      <App />
+      <App/>
     </Provider>
     , createContainerAndAppendToDom());
 

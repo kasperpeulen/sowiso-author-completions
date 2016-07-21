@@ -13,5 +13,8 @@
       ],
       "run_at": "document_end"
     }
+  ],
+  "web_accessible_resources": [
+    "sowiso_php_functions.json"
   ]
 }

@@ -6,10 +6,8 @@ import {elementIsCompletionElement} from "./helper_functions";
 import {findCompletionContext, mod} from "./helper_functions";
 import {updateCompletionContext, changeSelectedIndex} from "./actions/index";
 
-
 export default () => {
-
-  document.addEventListener('input', () => {
+  window.addEventListener('input', () => {
     const state = store.getState();
     const activeElement = document.activeElement;
 
@@ -36,7 +34,6 @@ export default () => {
         store.dispatch(changeSelectedIndex(0));
         store.dispatch(showCompletions(true));
       }
-
 
       const relevantCompletions = state.completions.relevant;
       const completionsLength = relevantCompletions.length;

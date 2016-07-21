@@ -6,7 +6,7 @@ import type {Action} from '../actions/types';
 import * as ActionTypes from '../actions/types';
 
 export default (state: Position = new Position(100, 100), action: Action): Position => {
-  if (action.type === ActionTypes.showCompletionsAction && action.doShow) {
+  if (action.type === ActionTypes.showCompletions && action.doShow) {
     const activeElement = document.activeElement;
 
     // double check the type to make flow happy ...

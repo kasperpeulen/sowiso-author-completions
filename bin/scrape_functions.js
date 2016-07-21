@@ -7,7 +7,7 @@ import fsp from 'fs-promise';
 // get the file from https://cloud.sowiso.nl/docs/exercise_manual
 // this file is not checked in
 const inputFile = 'bin/exercise_manual.html';
-const outputDir = 'src/resources';
+const outputDir = 'dist';
 const outputFile = 'sowiso_php_functions.json';
 
 (async() => {
