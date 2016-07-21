@@ -3,7 +3,7 @@ import * as ActionTypes from './types';
 import type {Completions} from "../flowtypes";
 import type {ShowCompletionsAction, CompletionContextUpdatedAction, ChangeSelectedIndexAction, InitialCompletionsFetchedAction} from "./types";
 
-export const showCompletions = (doShow: boolean): ShowCompletionsAction => {
+export const showCompletionsAction = (doShow: boolean): ShowCompletionsAction => {
   return {
     type: ActionTypes.showCompletions,
     doShow

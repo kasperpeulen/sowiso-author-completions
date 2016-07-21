@@ -20,13 +20,13 @@ class App extends Component {
       return null;
     }
     return (
-        <div ref="root" style={{
+        <div style={{
         display: showCompletions ? 'flex' : 'none',
         flexDirection: 'row',
          maxHeight: '131px',
         borderRadius: '3px',
         boxShadow: 'rgba(0, 0, 0, 0.0980392) 0px 2px 12px',
-        padding: '2px 0px',
+        padding: '2px 4px',
         position: 'absolute',
         background: 'rgba(255, 255, 255, 0.901961)',
         ...completionPosition.px

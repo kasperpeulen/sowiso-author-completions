@@ -1,14 +1,21 @@
 /* @flow */
 import KeyCode from 'keycode.js/index';
 import {store} from './store';
-import {showCompletions} from './actions';
+import {showCompletionsAction} from './actions';
 import {elementIsCompletionElement} from "./helper_functions";
 import {findCompletionContext, mod} from "./helper_functions";
 import {updateCompletionContext, changeSelectedIndex} from "./actions/index";
 
 export default () => {
+  window.addEventListener('blur', (e) => {
+    // preventing blurring if completions are shown
+    // because this causes all kind of weirdness
+    if (store.getState().showCompletions) {
+      e.target.focus();
+    }
+  }, true);
+
   window.addEventListener('input', () => {
-    const state = store.getState();
     const activeElement = document.activeElement;
 
     // casting element for flow
@@ -30,7 +37,7 @@ export default () => {
       // show the completions on ctrl-space in the right textarea
       if (ctrlSpacePressed(e)) {
         store.dispatch(changeSelectedIndex(0));
-        store.dispatch(showCompletions(true));
+        store.dispatch(showCompletionsAction(true));
       }
 
       const relevantCompletions = state.completions.relevant;
@@ -48,7 +55,7 @@ export default () => {
           store.dispatch(changeSelectedIndex(index2));
           break;
         case KeyCode.ESCAPE:
-          store.dispatch(showCompletions(false));
+          store.dispatch(showCompletionsAction(false));
           break;
         case KeyCode.ENTER:
           e.preventDefault();
@@ -62,7 +69,7 @@ export default () => {
           const newCaretPos = getNewCaretPosition(activeElement, activeCompletionText);
           activeElement.setSelectionRange(newCaretPos, newCaretPos);
 
-          store.dispatch(showCompletions(false));
+          store.dispatch(showCompletionsAction(false));
           break;
       }
     }
