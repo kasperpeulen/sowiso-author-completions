@@ -1,5 +1,5 @@
 /* @flow */
-import {Completions} from "../flowtypes";
+import type {Completions} from "../flowtypes";
 
 // use import * as ActionTypes from '../actions/types';
 // so you write ActionTypes.showCompletions

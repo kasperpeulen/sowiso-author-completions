@@ -1,6 +1,8 @@
-import {Completion} from './model/Completion';
+/* @flow */
+import type {Completion} from './model/Completion';
 
 export type Completions = {
   all: [Completion],
-  relevant: [Completion]
+  relevant: [Completion],
+  completionContext: string
 }

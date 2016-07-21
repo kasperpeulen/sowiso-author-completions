@@ -22,7 +22,8 @@ export async function fetchInitialState() {
 
   const initial = {
     all: allCompletions,
-    relevant: allCompletions
+    relevant: allCompletions,
+    completionContext: ""
   };
 
   store.dispatch(initialCompletionsFetched(initial));

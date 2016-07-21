@@ -1,9 +1,9 @@
 /* @flow */
 import * as ActionTypes from '../actions/types';
 import type {Action} from '../actions/types';
-import {Completions} from "../flowtypes";
+import type {Completions} from "../flowtypes";
 
-export default (state: Completions = {all: [], relevant: []}, action: Action): Completions => {
+export default (state: Completions = {all: [], relevant: [], completionContext: ""}, action: Action): Completions => {
   if (action.type === ActionTypes.completionContextUpdated) {
     const completionContext = action.completionContext;
     return calculateNewCompletions(state, completionContext);
@@ -17,6 +17,7 @@ const calculateNewCompletions = (completions: Completions, completionContext: st
   const relevant = completions.all.filter(c => c.completion.startsWith(completionContext));
   return {
     all: completions.all,
-    relevant
+    relevant,
+    completionContext
   }
 };

@@ -53,7 +53,15 @@ export default () => {
         case KeyCode.ENTER:
           e.preventDefault();
           const activeCompletionText = relevantCompletions[state.selectedCompletionIndex].completion;
-          insertTextInTextarea(activeCompletionText, activeElement);
+
+          // dom side effect, insert text at caretposition in textarea
+          const caretPosition = activeElement.selectionEnd;
+          activeElement.value = getNewTextareaValue(activeCompletionText, activeElement.value, caretPosition);
+
+          // dom side effect
+          const newCaretPos = getNewCaretPosition(activeElement, activeCompletionText);
+          activeElement.setSelectionRange(newCaretPos, newCaretPos);
+
           store.dispatch(showCompletions(false));
           break;
       }
@@ -63,17 +71,21 @@ export default () => {
 
 const ctrlSpacePressed = (e: KeyboardEvent): boolean => e.which === KeyCode.SPACE && e.ctrlKey;
 
-// insert text at caretposition in textarea
-const insertTextInTextarea = (text: string, textarea: HTMLTextAreaElement) => {
-  const textAsList = textarea.value.split("");
-  const caretPosition = textarea.selectionEnd;
+// pure function
+const getNewTextareaValue = (text: string, textareaValue: string, caretPosition: number): string => {
+  // only from the caretposition text should be inserted
+  // for example if sw_a<caret> needs completion, then strip out 'sw_a' completion
+  const completionContext = store.getState().completions.completionContext;
+  text = text.substring(completionContext.length);
+
+  const textAsList = textareaValue.split("");
   textAsList.splice(caretPosition, 0, text);
 
-  // dom side effect
-  textarea.value = textAsList.join("");
-
-  const newCaretPosition = caretPosition + text.length;
-
-  // dom side effect
-  textarea.setSelectionRange(newCaretPosition, newCaretPosition);
+  return textAsList.join("");
 };
+
+// pure function
+function getNewCaretPosition(textarea: HTMLTextAreaElement, textJustInserted: string): number {
+  const oldCaretPosition = textarea.selectionEnd;
+  return oldCaretPosition + textJustInserted.length;
+}
