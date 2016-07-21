@@ -22,19 +22,17 @@ const completionData = [
   }
 ];
 
-const allCompletions = completionData.map((c) => new Completion(c.completion, c.description));
-
-const initial = {
-  all: allCompletions,
-  relevant: allCompletions
-};
-
-
 export type Completions = {
   all: [Completion],
   relevant: [Completion]
 }
 
+const allCompletions = completionData.map((c) => new Completion(c.completion, c.description));
+
+const initial: Completions = {
+  all: allCompletions,
+  relevant: allCompletions
+};
 
 export default (state: Completions = initial, action: Action): Completions => {
   if (action.type === ActionTypes.completionContextUpdatedAction) {
@@ -45,6 +43,5 @@ export default (state: Completions = initial, action: Action): Completions => {
       relevant
     }
   }
-
   return state
 }

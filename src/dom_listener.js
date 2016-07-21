@@ -6,7 +6,6 @@ import {elementIsCompletionElement} from "./helper_functions";
 import {findCompletionContext, mod} from "./helper_functions";
 import {updateCompletionContext, changeSelectedIndex} from "./actions/index";
 
-
 export default () => {
   window.addEventListener('keydown', (e) => {
     const activeElement = document.activeElement;
@@ -28,7 +27,6 @@ export default () => {
       const state = store.getState();
       const relevantCompletions = state.completions.relevant;
       const completionsLength = relevantCompletions.length;
-      console.log(relevantCompletions, state);
 
       if (e.which === KeyCode.DOWN) {
         e.preventDefault();
@@ -57,8 +55,12 @@ const insertTextInTextarea = (text: string, textarea: HTMLTextAreaElement) => {
   const textAsList = textarea.value.split("");
   const caretPosition = textarea.selectionEnd;
   textAsList.splice(caretPosition, 0, text);
+
+  // dom side effect
   textarea.value = textAsList.join("");
 
   const newCaretPosition = caretPosition + text.length;
+
+  // dom side effect
   textarea.setSelectionRange(newCaretPosition, newCaretPosition);
 };

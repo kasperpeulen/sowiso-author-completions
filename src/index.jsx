@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import {Provider} from 'react-redux';
 
 import App from './components/app';
 import initDomListener from './dom_listener';
@@ -22,4 +22,5 @@ ReactDOM.render(
     </Provider>
     , createContainerAndAppendToDom());
 
+// listens to dom events such as keydowm
 initDomListener();
