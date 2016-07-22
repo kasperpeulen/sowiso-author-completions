@@ -16,10 +16,10 @@ This chrome extension provides completions for authors working in sowiso.
 - Completion suggestions include:
     - [PHP FUNCTIONS](https://cloud.sowiso.nl/docs/exercise_manual#PHP_functions)
 - Expose the description in the UI
-
-### To do
 - Make sure to strip the parameters when inserted in the dom
 - Put the caret position between the parenthesis (<caret>) after inserting completion
+
+### To do
 - Give the UI some love
 
 ### Bugs

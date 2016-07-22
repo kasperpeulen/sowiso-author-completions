@@ -66,7 +66,7 @@ export default () => {
           activeElement.value = getNewTextareaValue(activeCompletionText, activeElement.value, caretPosition);
 
           // dom side effect
-          const newCaretPos = getNewCaretPosition(activeElement, activeCompletionText);
+          const newCaretPos = getNewCaretPosition(caretPosition, activeCompletionText);
           activeElement.setSelectionRange(newCaretPos, newCaretPos);
 
           store.dispatch(showCompletionsAction(false));
@@ -79,20 +79,31 @@ export default () => {
 const ctrlSpacePressed = (e: KeyboardEvent): boolean => e.which === KeyCode.SPACE && e.ctrlKey;
 
 // pure function
-const getNewTextareaValue = (text: string, textareaValue: string, caretPosition: number): string => {
-  // only from the caretposition text should be inserted
-  // for example if sw_a<caret> needs completion, then strip out 'sw_a' completion
-  const completionContext = store.getState().completions.completionContext;
-  text = text.substring(completionContext.length);
-
+const getNewTextareaValue = (fullCompletion: string, textareaValue: string, caretPosition: number): string => {
+  var newText = textToBeInserted(fullCompletion);
   const textAsList = textareaValue.split("");
-  textAsList.splice(caretPosition, 0, text);
+  textAsList.splice(caretPosition, 0, newText);
 
   return textAsList.join("");
 };
 
+function textToBeInserted(fullCompletion: String) {
+  // strip out parameters
+  const beginParameterIndex = fullCompletion.indexOf("(");
+  const endParamterIndex = fullCompletion.indexOf(")");
+
+  let newText = fullCompletion.substring(0, beginParameterIndex + 1) + fullCompletion.substring(endParamterIndex);
+
+  // only from the caretposition text should be inserted
+  // for example if sw_a<caret> needs completion, then strip out 'sw_a' completion
+  const completionContext = store.getState().completions.completionContext;
+  return newText.substring(completionContext.length);
+}
+
 // pure function
-function getNewCaretPosition(textarea: HTMLTextAreaElement, textJustInserted: string): number {
-  const oldCaretPosition = textarea.selectionEnd;
-  return oldCaretPosition + textJustInserted.length;
+function getNewCaretPosition(oldCaretPosition: number, fullCompletion: string): number {
+  var text = textToBeInserted(fullCompletion);
+  // move caret one to the left inside the parens
+  console.log(oldCaretPosition, text.length, fullCompletion);
+  return oldCaretPosition + text.length - 1;
 }
