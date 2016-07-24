@@ -1,6 +1,6 @@
 {
   "name": "sowiso-author-completions",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Provides completions for authors working in sowiso.",
   "content_scripts": [
     {

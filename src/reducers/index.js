@@ -24,4 +24,3 @@ const rootReducer: Reducer<State, Action> = combineReducers({
 });
 
 export default rootReducer;
-

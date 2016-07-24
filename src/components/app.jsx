@@ -24,11 +24,12 @@ class App extends Component {
         display: showCompletions ? 'flex' : 'none',
         flexDirection: 'row',
          maxHeight: '131px',
+         zIndex: '1000000',
         borderRadius: '3px',
         boxShadow: 'rgba(0, 0, 0, 0.0980392) 0px 2px 12px',
         padding: '2px 4px',
         position: 'absolute',
-        background: 'rgba(255, 255, 255, 0.901961)',
+        background: 'rgba(255, 255, 255, 0.97)',
         ...completionPosition.px
       }}>
             <div style={{
@@ -45,7 +46,7 @@ class App extends Component {
                 />
               })}
             </div>
-          <div style={{overflow: 'auto', width: '400px'}}>
+          <div style={{overflow: 'auto', width: '400px', marginLeft: '5px'}}>
             {this.selectedCompletionDescription()}
             </div>
         </div>

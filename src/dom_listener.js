@@ -87,7 +87,7 @@ const getNewTextareaValue = (fullCompletion: string, textareaValue: string, care
   return textAsList.join("");
 };
 
-function textToBeInserted(fullCompletion: String) {
+function textToBeInserted(fullCompletion: string) {
   // strip out parameters
   const beginParameterIndex = fullCompletion.indexOf("(");
   const endParamterIndex = fullCompletion.indexOf(")");
